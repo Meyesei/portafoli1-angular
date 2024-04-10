@@ -7,6 +7,16 @@
   }
 
 
+  /*
+  SVG Animation - Color del Loading
+*/
+svg path,
+svg rect{
+  fill: black;
+}
+
+
+/* animaciones */
   @media print, (prefers-reduced-motion: reduce) {
     .animate__animated {
       -webkit-animation-duration: 1ms !important;

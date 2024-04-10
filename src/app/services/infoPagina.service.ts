@@ -9,25 +9,53 @@ export class InfoPaginaService {
   info: infoPagina = {};
   cargada = false;
 
+  equipo: any[] = [];
+
   constructor(private http: HttpClient) {
     console.log('Servicio de InfoPagina listo');
 
-    //modulo para leer un archivo json y tomar sus
+    this.cargarInfo();
+    this.cargarEquipo();
+  }
+
+
+  //estos metodos(cargarInfo y cargarEquipo ) seran pridados, asi que solo seran visible desde el lado del servicio
+private cargarInfo(){
+
+  //modulo para leer un archivo json y tomar sus
     //propiedades para ser utilisados en la paginasS/peticiones http
-    this.http
-      .get('assets/data/data-pagina.json')
+    this.http.get('assets/data/data-pagina.json')//leer el archivo json
       .subscribe( (resp: infoPagina) => {
 
-      // console.log( resp[facebook] );
 
       // .subscribe((resp: any) => {
 
         this.cargada = true;
         this.info = resp;
-       console.log(resp);
-        //  console.log( resp.facebook );
+    
 
         // });
      });
-  }
+
+}
+
+cargarEquipo() {
+
+  //modulo para leer un archivo json y tomar sus
+    //propiedades para ser utilisados en la paginasS/peticiones http
+    this.http.get('https://mey-angular-html-default-rtdb.firebaseio.com/equipo.json')//leer el archivo json
+      .subscribe( (resp: any) => {
+
+
+      // .subscribe((resp: any) => {
+
+        this.equipo = resp;
+     
+  
+
+        // });
+     });
+
+}
+
 }
